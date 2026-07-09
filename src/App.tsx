@@ -2006,7 +2006,7 @@ function HouseholdSetupWizard({ onComplete, initialUserName }: { onComplete: (da
                     <p className="text-xs font-medium text-vaultly-sage uppercase tracking-wide">Household Information</p>
                     <p className="text-lg font-semibold text-vaultly-navy mt-1">{householdName}</p>
                     <p className="text-sm text-vaultly-sage mt-1">
-                      {selectedCountry} • {selectedCurrency} • {selectedTimeZone}
+                      {selectedCurrency} • {selectedTimeZone}
                     </p>
                   </div>
 
@@ -3311,8 +3311,8 @@ function SettingsPage({
   currentUser, 
   onLinkGoogle,
   settingsSection,
-  householdSetupData,
-  onUpdateHousehold,
+  householdSetupData: _householdSetupData,
+  onUpdateHousehold: _onUpdateHousehold,
 }: {
   onLogout: () => void;
   currentUser?: User | null;

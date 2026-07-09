@@ -35,27 +35,31 @@ export const Input: React.FC<InputProps> = ({
   helperText,
   variant = 'default',
   className = '',
+  style,
   ...props
 }) => {
-  const inputClasses = `w-full px-4 py-2.5 rounded-[14px] border transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:bg-[${colors.cream}] disabled:cursor-not-allowed`;
-  
-  const borderClasses = error
-    ? `border-[${colors.terracotta}] focus:ring-[${colors.terracotta}]`
-    : `border-[${colors.softBeige}] focus:ring-[${colors.navy}]`;
+  const inputClasses = 'w-full px-4 py-2.5 rounded-[14px] border transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed';
+  const inputStyle: React.CSSProperties = {
+    borderColor: error ? colors.terracotta : colors.softBeige,
+    ...(props.disabled ? { backgroundColor: colors.cream } : {}),
+    ['--tw-ring-color' as string]: error ? colors.terracotta : colors.navy,
+    ...style,
+  };
   
   return (
     <div className="w-full">
       {label && (
-        <label className={`mb-2 block text-sm font-medium text-[${colors.navy}]`}>
+        <label className="mb-2 block text-sm font-medium" style={{ color: colors.navy }}>
           {label}
         </label>
       )}
       <input
-        className={`${inputClasses} ${borderClasses} ${className}`}
+        className={`${inputClasses} ${className}`}
+        style={inputStyle}
         {...props}
       />
-      {error && <p className={`mt-1 text-sm text-[${colors.terracotta}]`}>{error}</p>}
-      {helperText && <p className={`mt-1 text-sm text-[${colors.sage}]`}>{helperText}</p>}
+      {error && <p className="mt-1 text-sm" style={{ color: colors.terracotta }}>{error}</p>}
+      {helperText && <p className="mt-1 text-sm" style={{ color: colors.sage }}>{helperText}</p>}
     </div>
   );
 };
@@ -68,23 +72,31 @@ export const TextArea: React.FC<TextAreaProps> = ({
   error,
   helperText,
   className = '',
+  style,
   ...props
 }) => {
-  const textareaClasses = `w-full px-4 py-2.5 rounded-[14px] border border-[${colors.softBeige}] transition-all focus:outline-none focus:ring-2 focus:ring-[${colors.navy}] focus:ring-offset-2 disabled:bg-[${colors.cream}] disabled:cursor-not-allowed`;
+  const textareaClasses = 'w-full px-4 py-2.5 rounded-[14px] border transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed';
+  const textareaStyle: React.CSSProperties = {
+    borderColor: colors.softBeige,
+    ...(props.disabled ? { backgroundColor: colors.cream } : {}),
+    ['--tw-ring-color' as string]: colors.navy,
+    ...style,
+  };
   
   return (
     <div className="w-full">
       {label && (
-        <label className={`mb-2 block text-sm font-medium text-[${colors.navy}]`}>
+        <label className="mb-2 block text-sm font-medium" style={{ color: colors.navy }}>
           {label}
         </label>
       )}
       <textarea
         className={`${textareaClasses} ${className}`}
+        style={textareaStyle}
         {...props}
       />
-      {error && <p className={`mt-1 text-sm text-[${colors.terracotta}]`}>{error}</p>}
-      {helperText && <p className={`mt-1 text-sm text-[${colors.sage}]`}>{helperText}</p>}
+      {error && <p className="mt-1 text-sm" style={{ color: colors.terracotta }}>{error}</p>}
+      {helperText && <p className="mt-1 text-sm" style={{ color: colors.sage }}>{helperText}</p>}
     </div>
   );
 };
@@ -98,26 +110,33 @@ export const Select: React.FC<SelectProps> = ({
   helperText,
   options,
   className = '',
+  style,
   ...props
 }) => {
-  const selectClasses = `w-full px-4 py-2.5 rounded-[14px] border border-[${colors.softBeige}] transition-all focus:outline-none focus:ring-2 focus:ring-[${colors.navy}] focus:ring-offset-2 disabled:bg-[${colors.cream}] disabled:cursor-not-allowed`;
+  const selectClasses = 'w-full px-4 py-2.5 rounded-[14px] border transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed';
+  const selectStyle: React.CSSProperties = {
+    borderColor: colors.softBeige,
+    ...(props.disabled ? { backgroundColor: colors.cream } : {}),
+    ['--tw-ring-color' as string]: colors.navy,
+    ...style,
+  };
   
   return (
     <div className="w-full">
       {label && (
-        <label className={`mb-2 block text-sm font-medium text-[${colors.navy}]`}>
+        <label className="mb-2 block text-sm font-medium" style={{ color: colors.navy }}>
           {label}
         </label>
       )}
-      <select className={`${selectClasses} ${className}`} {...props}>
+      <select className={`${selectClasses} ${className}`} style={selectStyle} {...props}>
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}
           </option>
         ))}
       </select>
-      {error && <p className={`mt-1 text-sm text-[${colors.terracotta}]`}>{error}</p>}
-      {helperText && <p className={`mt-1 text-sm text-[${colors.sage}]`}>{helperText}</p>}
+      {error && <p className="mt-1 text-sm" style={{ color: colors.terracotta }}>{error}</p>}
+      {helperText && <p className="mt-1 text-sm" style={{ color: colors.sage }}>{helperText}</p>}
     </div>
   );
 };

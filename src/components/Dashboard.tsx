@@ -166,7 +166,7 @@ export const QuickActions: React.FC = () => {
             }`}
           >
             <div className="text-2xl mb-2 flex justify-center">
-              {action.useSvg ? <VaultlyIcon name={'iconName' in action ? action.iconName : 'documents'} size="lg" /> : action.icon}
+              <VaultlyIcon name={action.iconName} size="lg" />
             </div>
             <p className="text-xs font-semibold">{action.title}</p>
           </button>
